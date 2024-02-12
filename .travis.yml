@@ -7,3 +7,16 @@ before_install:
 
 script: 
   - docker run -e CI=true raanan7784/docker-kebernetes-cicd npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "Docker-cicd"
+  env: "Docker-cicd-env"
+  bucket_name: "elasticbeanstalk-us-east-1-637423406664"
+  bucket_path: "Docker-cicd"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: "$AWS_SECRET_KEY"
+
